@@ -1,0 +1,42 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracks List</title>
+    <link rel="stylesheet" src="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" src="{% static 'bootstrap/css/bootstrap.css' %}"/>
+</head>
+<body style="">
+<div class="container">
+
+
+<img width="50%" src="{%static 'images/iot.png'%}">
+<h1>Tracks List</h1>
+<table width="100%" border="1" class="table table-striped">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>image</td>
+        <td>Actions</td>
+    </tr>
+    {%for track in tracks%}
+        <tr>
+            <td>{{track.id}}</td>
+            <td>{{track.Name}}</td>
+            <td>
+                {{track.path}}
+                <img src="{%static 'images/' |Add:track.path %}"/>
+            </td>
+            <td>
+                <a href="/Tracks/{{track.id}}">show details</a>
+                <a href="{% url 'track.details' track.id%}">show details</a>
+            </td>
+        </tr>
+
+    {%endfor%}
+</table>
+</div>
+<script src="{%static 'bootstrap/js/bootstrap.js'%}"/>
+</body>
+</html>
